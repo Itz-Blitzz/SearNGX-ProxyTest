@@ -7,3 +7,12 @@ search:
   formats:
     - html
     - json
+
+proxies:
+  url: "https://raw.githubusercontent.com/mishableskineetudiant-stack/proxylistfiltered/refs/heads/main/proxies_elite.json"
+  fetch_interval: 300
+  format: "json"
+  json_key: "proxies"
+  ip_key: "ip"
+  port_key: "port"
+  protocol_key: "protocol"
