@@ -2,22 +2,16 @@ FROM searxng/searxng:latest
 
 USER root
 
-# Installation des dépendances
-RUN apt-get update && apt-get install -y \
-    privoxy \
-    python3 \
-    procps \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copie des fichiers
+# On copie juste nos fichiers (pas de RUN apt ou apk !)
 COPY settings.yml /etc/searxng/settings.yml
-COPY update_proxies.py /usr/local/bin/update_proxies.py
-COPY entrypoint.sh /entrypoint.sh
+COPY rotary_proxy.py /usr/local/bin/rotary_proxy.py
 
-# Permissions
-RUN chmod +x /usr/local/bin/update_proxies.py /entrypoint.sh
-RUN chown -R searxng:searxng /etc/privoxy
+# On crée un script de lancement simple
+RUN echo '#!/bin/sh\n\
+python3 /usr/local/bin/rotary_proxy.py &\n\
+exec /usr/local/bin/docker-entrypoint.sh' > /entrypoint_custom.sh && \
+chmod +x /entrypoint_custom.sh
 
 EXPOSE 8080
 
-ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "/entrypoint_custom.sh"]
