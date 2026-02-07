@@ -1,0 +1,9 @@
+use_default_settings: true
+
+server:
+  secret_key: "une_clé_secrète_très_longue_et_unique"
+
+search:
+  formats:
+    - html
+    - json
