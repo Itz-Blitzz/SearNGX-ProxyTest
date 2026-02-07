@@ -1,14 +1,24 @@
 use_default_settings: true
 
 server:
-  secret_key: "une_clé_secrète_très_longue_et_unique"
+  secret_key: "mot_de_passe_tres_long_et_aleatoire_pour_searxng"
+  port: 8080
+  bind_address: "0.0.0.0"
 
 search:
   formats:
     - html
     - json
 
+engines:
+  - name: google
+    engine: google
+  - name: bing
+    engine: bing
+  - name: duckduckgo
+    engine: duckduckgo
+
 outgoing:
   proxies:
-    http: http://127.0.0.1:8118
-    https: http://127.0.0.1:8118
+    all://:
+      - https://proxy-relay-9p7m.onrender.com
