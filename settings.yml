@@ -19,6 +19,12 @@ engines:
     engine: duckduckgo
 
 outgoing:
+  # Timeout global pour limiter les requêtes lentes
+  request_timeout: 5.0
+  max_request_timeout: 10.0
+
+  # Liste des proxies à utiliser (httpx / socks5 syntaxe)
   proxies:
     all://:
-      - https://proxy-relay-9p7m.onrender.com
+      - socks5h://91.242.229.96:1080
+      
