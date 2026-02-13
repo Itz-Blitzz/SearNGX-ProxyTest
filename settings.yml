@@ -26,5 +26,5 @@ outgoing:
   # Liste des proxies à utiliser (httpx / socks5 syntaxe)
   proxies:
     all://:
-      - socks5h://91.242.229.96:1080
+      - socks5h://75.119.153.52:1080
       
